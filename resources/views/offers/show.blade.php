@@ -1,4 +1,4 @@
-@extends('offers.layout')
+@extends('admin.layout')
 
   
 
