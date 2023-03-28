@@ -18,7 +18,7 @@ use App\Http\Controllers\OffersController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/offers',[OffersController::class,'show']);
+Route::resource ('offers',OffersController::class);
 
 Auth::routes();
 

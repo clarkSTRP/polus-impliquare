@@ -13,7 +13,11 @@ class OffersController extends Controller
      */
     public function index()
     {
-        //
+        $Offers = Offers::latest()->paginate(10);
+
+        return view('offers.index',compact('Offers'))
+
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -21,7 +25,7 @@ class OffersController extends Controller
      */
     public function create()
     {
-        //
+        return view('offers.create');
     }
 
     /**
@@ -29,13 +33,37 @@ class OffersController extends Controller
      */
     public function store(StoreoffersRequest $request)
     {
-        //
+        $request->validate([
+
+            'title' => 'required',
+
+            'salary' => 'required',
+
+            'type' => 'required',
+
+            'location' => 'required',
+
+            'description' => 'required',
+
+            'available_for' => 'required',
+
+        ]);
+
+      
+
+        Offers::create($request->all());
+
+       
+
+        return redirect()->route('offers.index')
+
+                        ->with('success','Offers created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Offers $offers)
+    public function show(Offers $Offers)
     {
             $data = Offers::all();
             return view('Offers',['Offers'=>$data]);
@@ -45,24 +73,51 @@ class OffersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Offers $offers)
+    public function edit(Offers $Offer)
     {
-        //
+        return view('offers.edit',compact('Offer'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateoffersRequest $request, Offers $offers)
+    public function update( UpdateoffersRequest $request,Offers $Offer)
     {
-        //
+        $request->validate([
+
+            'title' => '',
+
+            'salary' => '',
+
+            'type' => '',
+
+            'location' => '',
+
+            'description' => '',
+
+            'available_for' => '',
+
+        ]);
+        $Offer->update($request->all());
+
+
+      
+
+        return redirect()->route('offers.index')
+
+                        ->with('success','offers updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Offers $offers)
+    public function destroy(Offers $Offer)
     {
-        //
+        $Offer->delete();
+
+        return redirect()->route('offers.index')
+
+                        ->with('success','Offers deleted successfully');
     }
 }
