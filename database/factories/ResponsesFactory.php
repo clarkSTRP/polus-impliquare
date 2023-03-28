@@ -1,13 +1,12 @@
 <?php
 
-namespace Database\Factories\polusimpliquare\database\factories;
-
+namespace Database\Factories;
 use App\Models\User;
 use App\Models\Offers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Responses>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\responses>
  */
 class ResponsesFactory extends Factory
 {
@@ -20,8 +19,12 @@ class ResponsesFactory extends Factory
     {
         return [
             'content' => fake()->text(),
-            'user_id' => User::factory()->create()->id,
-            'offer_id' => Offers::factory()->create()->id,
+            'user_id' => function (){
+                return fake()-> randomElement(User::all())->id;
+            },
+            'offers_id' => function (){
+                return fake()-> randomElement(Offers::all())->id;
+            },
             //
         ];
     }
