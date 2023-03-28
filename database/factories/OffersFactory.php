@@ -17,7 +17,6 @@ class OffersFactory extends Factory
     public function definition(): array
     {
         return [
-
             'title' => fake()->name(),
             'type' => fake()->randomElement(['CDI','CDD','ALTERNANCE']),
             'location' => fake()->randomElement(['provence','laplebe','occitanie']),

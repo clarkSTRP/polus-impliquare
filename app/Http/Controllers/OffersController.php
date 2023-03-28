@@ -37,7 +37,9 @@ class OffersController extends Controller
      */
     public function show(Offers $offers)
     {
-        //
+            $data = Offers::all();
+            return view('Offers',['Offers'=>$data]);
+
     }
 
     /**
