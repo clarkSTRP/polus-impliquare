@@ -2,21 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Offers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $Offers = Offers::latest()->paginate(10);
+
+        
+        $Offers = Offers::query();
+        // $Offers = DB::table('offers');
+        if ($request->has('type')) {
+            $Offers = $Offers->where('type', $request->type);
+        }
+        if ($request->has('location')) {
+            $Offers = $Offers->where('location', $request->location);
+        }
+        $Offers = $Offers->get();
+        
+
+        return view('main.index',compact('Offers'));
+/*         $Offers = Offers::all();
+
+        return view('main.index',compact('Offers')); */
+/*         $Offers = Offers::latest()->paginate(10);
 
         return view('main.index',compact('Offers'))
 
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 5); */
     }
 
     /**

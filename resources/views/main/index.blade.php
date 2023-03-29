@@ -2,27 +2,39 @@
 
 @section('content')
 
-    
-<div class="dropdown btn-group">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      localisation de l'offre
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Provence</a></li>
-      <li><a class="dropdown-item" href="#">laplebe</a></li>
-      <li><a class="dropdown-item" href="#">Occitanie</a></li>
-    </ul>
-  </div>
-  <div class="dropdown btn-group">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      type d'offres
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">CDD</a></li>
-      <li><a class="dropdown-item" href="#">CDI</a></li>
-      <li><a class="dropdown-item" href="#">Alternance</a></li>
-    </ul>
-  </div>
+ 
+
+ <form action="" method="GET" >
+ {{--    <div class="row"> 
+        <div class="col-md-3">
+            <label>Filtrer par dates</label>
+            <input type="date" name="date" class="form-control" value="">
+        </div>
+    </div> --}}
+    <div class="col-md-3">
+        <label>Filtrer par type</label>
+        <select name="type" class="form-select">
+            <option >slection du type de contrat</option>
+            <option value="CDD">CDD</option>
+            <option value="CDI">CDI</option>
+            <option value="Alternance">Alternance</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label>Filtrer par localisation</label>
+        <select name="location" class="form-select">
+            <option value="">slection de la region</option>
+            <option value="provence">Provence</option>
+            <option value="laplebe">Laplebe</option>
+            <option value="Occitanie">Occitanie</option>
+        </select>
+    </div>
+    <div class="col-md-6">
+        <br/>
+        <button type="submit" class="btn btn-primary">Filtrer</button>
+    </div>
+</div>
+</form>
     
     <div class="row">
 
@@ -57,6 +69,7 @@
                                         <img src="https://via.placeholder.com/150" class="img-fluid mb-3" alt="Image de l'annonce">
 
                                         <h6 class="text-uppercase mb-0">{{ $Offer['title'] }}</h6>
+                                        <h6 class="text-uppercase mb-0">{{ $Offer['type'] }}</h6>
 
                                     </div>
 
@@ -92,7 +105,7 @@
 
                     <div class="col-md-12">
 
-                        {!! $Offers->links() !!}
+{{--                         {!! $Offers->links() !!} --}}
 
                     </div>
 

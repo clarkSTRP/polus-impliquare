@@ -15,8 +15,10 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 <body>
+    <livewire:counter />
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -76,5 +78,6 @@
             @yield('content')
         </main>
     </div>
+    @livewireScripts
 </body>
 </html>
