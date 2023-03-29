@@ -15,10 +15,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="">Manage Offers</a>
+                <a class="nav-link" href="{{ route('offers.index') }}">Manage Offers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">Manage Users</a>
+                <a class="nav-link" href="{{ route('user.index') }}">Manage Users</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="">Manage Responses</a>
