@@ -24,10 +24,12 @@ class MainController extends Controller
         if ($request->has('location')) {
             $Offers = $Offers->where('location', $request->location);
         }
-        $Offers = $Offers->get();
+        $Offers = $Offers->paginate(10);
+        
         
 
         return view('main.index',compact('Offers'));
+
 /*         $Offers = Offers::all();
 
         return view('main.index',compact('Offers')); */

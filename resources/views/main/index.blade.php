@@ -4,13 +4,14 @@
 
  
 
- <form action="" method="GET" >
+
  {{--    <div class="row"> 
         <div class="col-md-3">
             <label>Filtrer par dates</label>
             <input type="date" name="date" class="form-control" value="">
         </div>
-    </div> --}}
+    </div> --}} 
+    <form action="" method="GET" >
     <div class="col-md-3">
         <label>Filtrer par type</label>
         <select name="type" class="form-select">
@@ -20,6 +21,13 @@
             <option value="Alternance">Alternance</option>
         </select>
     </div>
+    <div class="col-md-6">
+        <br/>
+        <button type="submit" class="btn btn-primary">Filtrer</button>
+    </div>
+    </div>
+    </form>
+    <form action="" method="GET" >
     <div class="col-md-3">
         <label>Filtrer par localisation</label>
         <select name="location" class="form-select">
@@ -105,7 +113,7 @@
 
                     <div class="col-md-12">
 
-{{--                         {!! $Offers->links() !!} --}}
+{!! $Offers->links() !!}
 
                     </div>
 
