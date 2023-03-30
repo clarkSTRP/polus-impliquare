@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Responses extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'content',
+        'user_id',
+        'offers_id'
+    ];
     public function offers(): BelongsTo
     {
         return $this->belongsTo(Offers::class);

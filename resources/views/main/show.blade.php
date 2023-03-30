@@ -28,6 +28,7 @@
                 <p><strong>Date de création:</strong> {{ $Offer->created_at }}</p>
                 <p><strong>Date de mise à jour:</strong> {{ $Offer->updated_at }}</p>
                 <p><strong>Disponible pour:</strong> {{ $Offer->available_for }} jour</p>
+                <a href="{{ route('responses.create',$Offer->id) }}" class="btn btn-primary">postuler à l'offre</a>
             </div>
         </div>
     </div>

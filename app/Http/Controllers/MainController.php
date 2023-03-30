@@ -24,7 +24,15 @@ class MainController extends Controller
         if ($request->has('location')) {
             $Offers = $Offers->where('location', $request->location);
         }
-        $Offers = $Offers->paginate(10);
+        if ($request->has('asc')) {
+            $Offers = $Offers->orderBy('title');
+        }
+        if ($request->has('desc')) {
+            $Offers = $Offers->orderByDesc('title');
+        }
+
+
+        $Offers = $Offers->paginate(50);
         
         
 

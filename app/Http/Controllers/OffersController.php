@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offers;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreoffersRequest;
 use App\Http\Requests\UpdateoffersRequest;
-use App\Models\Offers;
 
 class OffersController extends Controller
 {
@@ -13,6 +14,10 @@ class OffersController extends Controller
      */
     public function index()
     {
+
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         $Offers = Offers::latest()->paginate(10);
 
         return view('offers.index',compact('Offers'))
