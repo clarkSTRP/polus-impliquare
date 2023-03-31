@@ -14,10 +14,6 @@ class OffersController extends Controller
      */
     public function index()
     {
-
-        if (Gate::denies('access-admin')){
-            abort('403');
-         }
         $Offers = Offers::latest()->paginate(10);
 
         return view('offers.index',compact('Offers'))
@@ -30,6 +26,9 @@ class OffersController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         return view('offers.create');
     }
 
@@ -38,6 +37,9 @@ class OffersController extends Controller
      */
     public function store(StoreoffersRequest $request)
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         $request->validate([
 
             'title' => 'required',
@@ -59,7 +61,9 @@ class OffersController extends Controller
         Offers::create($request->all());
 
        
-
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         return redirect()->route('offers.index')
 
                         ->with('success','Offers created successfully.');
@@ -70,6 +74,9 @@ class OffersController extends Controller
      */
     public function show(Offers $Offers)
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
             $data = Offers::all();
             return view('Offers',['Offers'=>$data]);
 
@@ -80,6 +87,9 @@ class OffersController extends Controller
      */
     public function edit(Offers $Offer)
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         return view('offers.edit',compact('Offer'));
 
     }
@@ -89,6 +99,10 @@ class OffersController extends Controller
      */
     public function update( UpdateoffersRequest $request,Offers $Offer)
     {
+
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         $request->validate([
 
             'title' => '',
@@ -119,6 +133,10 @@ class OffersController extends Controller
      */
     public function destroy(Offers $Offer)
     {
+
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         $Offer->delete();
 
         return redirect()->route('offers.index')

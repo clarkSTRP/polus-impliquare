@@ -11,7 +11,9 @@
             <input type="date" name="date" class="form-control" value="">
         </div>
     </div> --}} 
-    <form action="" method="GET" >
+    
+<article class="">
+    <form  class="btn-toolbar" action="" method="GET" >
     <div class="col-md-3">
         <label>Filtrer par type</label>
         <select name="type" class="form-select">
@@ -27,7 +29,7 @@
     </div>
     </div>
     </form>
-    <form action="" method="GET" >
+    <form class="btn-toolbar" action="" method="GET" >
     <div class="col-md-3">
         <label>Filtrer par localisation</label>
         <select name="location" class="form-select">
@@ -43,18 +45,19 @@
     </div>
 </div>
 </form>
-<form action="" method="GET" >
+<form class="btn-toolbar" action="" method="GET" >
     <div class="col-md-6">
         <br/>
         <button type="submit" name="asc" class="btn btn-primary">tris ascendant</button>
     </div>
 </form>
-<form action="" method="GET" >
+<form class="btn-toolbar" action="" method="GET" >
 <div class="col-md-6">
     <br/>
     <button type="submit" name="desc" class="btn btn-primary">tris descendant</button>
 </div>
 </form>
+</article>
     
     <div class="row">
 

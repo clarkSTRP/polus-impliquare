@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreresponsesRequest;
-use App\Http\Requests\UpdateresponsesRequest;
 use App\Models\Offers;
 use App\Models\Responses;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\StoreresponsesRequest;
+use App\Http\Requests\UpdateresponsesRequest;
 
 class ResponsesController extends Controller
 {
@@ -24,6 +25,9 @@ class ResponsesController extends Controller
     public function create($Offer)
 
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         $Offers  = Offers::findOrFail($Offer);
         return view('responses.create')->with('Offer', $Offers);
 /*         return view('responses.create'); */
@@ -34,6 +38,9 @@ class ResponsesController extends Controller
      */
     public function store(StoreresponsesRequest $request ,$Offer)
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         $request->validate([
             'content' => 'required',
 

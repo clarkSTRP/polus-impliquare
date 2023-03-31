@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -14,6 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         $User = User::latest()->paginate(10);
 
         return view('user.index',compact('User'))
@@ -26,6 +30,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         return view('user.create');
     }
 
@@ -34,6 +41,9 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         $request->validate([
 
             'name' => '',
@@ -60,6 +70,9 @@ class UserController extends Controller
      */
     public function show(User $User)
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
             $data = User::all();
             return view('user',['User'=>$data]);
 
@@ -70,6 +83,9 @@ class UserController extends Controller
      */
     public function edit(User $User)
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         return view('user.edit',compact('User'));
 
     }
@@ -79,6 +95,9 @@ class UserController extends Controller
      */
     public function update( UpdateUserRequest $request,User $User)
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         $request->validate([
 
             'name' => '',
@@ -99,6 +118,9 @@ class UserController extends Controller
      */
     public function destroy(User $User)
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         $User->delete();
 
         return redirect()->route('user.index')
